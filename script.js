@@ -4,12 +4,12 @@ const container = document.querySelector("#container")
 
 
 submit.addEventListener( "click", (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     post(form.value)
     form.value = ""
 })
 
-fetch("./db.json")
+fetch("http://localhost:3000/items")
     .then(resp => resp.json())
     .then(items => {
         items.forEach(item => {
@@ -19,7 +19,7 @@ fetch("./db.json")
 
 function post(data){
     const object = { name: data }
-    fetch("./db.json", {
+    fetch("http://localhost:3000/items", {
         method: "POST",
         headers: {
         "Content-Type": "application/json",
@@ -31,7 +31,7 @@ function post(data){
         console.log(resp)
         resp.json()
     })
-    .then((data) => console.log(data))
+    .then((data) => createItem(data))
 }
 
 function createItem(contents) {
