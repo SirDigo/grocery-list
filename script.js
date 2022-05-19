@@ -9,7 +9,7 @@ submit.addEventListener( "click", (e) => {
     form.value = ""
 })
 
-fetch("db.json")
+fetch("./db.json")
     .then(resp => resp.json())
     .then(items => {
         items.forEach(item => {
@@ -19,20 +19,24 @@ fetch("db.json")
 
 function post(data){
     const object = { name: data }
-    return fetch("db.json", {
+    fetch("./db.json", {
         method: "POST",
         headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
         },
         body: JSON.stringify(object),
     })
-        .then((resp) => resp.json())
-        .then((data) => console.log(data))
+    .then((resp) => {
+        console.log(resp)
+        resp.json()
+    })
+    .then((data) => console.log(data))
 }
 
 function createItem(contents) {
     const newItem = document.createElement('div')
     newItem.textContent = contents
-    console.log(newItem)
+    // console.log(newItem)
     container.appendChild(newItem)
 }
