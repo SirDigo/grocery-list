@@ -2,4 +2,4 @@
 and stuff
 
 
-start mock db => json-server --watch db.json
+start mock db ====> json-server --watch db.json

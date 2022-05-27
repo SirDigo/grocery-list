@@ -64,8 +64,12 @@ function deleteItem(id){
 function createItem(contents) {
     //making a new item
     const newItem = document.createElement('div')
-    newItem.textContent = contents
     newItem.className = "item"
+
+    //making a new p tag
+    const pTag = document.createElement('p')
+    pTag.textContent = contents
+    pTag.className = "p-tag-item"
 
     //creating X button on each item
     const btn = document.createElement("button")
@@ -73,6 +77,7 @@ function createItem(contents) {
     btn.className = "item-btn-x"
     addListener(btn)
 
+    newItem.appendChild(pTag)
     newItem.appendChild(btn)
     container.appendChild(newItem)
 }
